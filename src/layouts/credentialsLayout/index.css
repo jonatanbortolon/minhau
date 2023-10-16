@@ -1,0 +1,5 @@
+@media (max-width: 30em) {
+  .cl-rootBox .cl-internal-b3fm6y {
+    @apply translate-x-6 translate-y-full;
+  }
+}

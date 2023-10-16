@@ -1,0 +1,12 @@
+{
+  "tailwindCSS.classAttributes": [
+    "className"
+  ],
+  "tailwindCSS.files.exclude": [
+    "**/.git/**",
+    "**/node_modules/**",
+    "**/.hg/**",
+    "**/.svn/**",
+    "**/*.ts"
+  ]
+}

@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  postgres:
+    build: .
+    environment:
+      POSTGRES_DB: minhau_dev
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+  
+  redis:
+    image: redis:7.2
+    ports:
+      - '6379:6379'
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"

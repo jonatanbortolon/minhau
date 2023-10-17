@@ -10,8 +10,6 @@ import { QueryProvider } from '@/providers/query'
 import { AuthProvider } from '@/providers/auth'
 import { NotificationProvider } from '@/providers/notification'
 import { PropsWithChildren } from 'react'
-import { getServerSession } from 'next-auth'
-import { authOptions } from '@/authOptions'
 
 const interFont = Inter({
   subsets: ['latin'],
@@ -57,7 +55,6 @@ type Props = PropsWithChildren
 export const dynamic = 'force-dynamic'
 
 export default async function Layout({ children }: Props) {
-  const session = await getServerSession(authOptions)
   const initialTheme = getServerTheme()
 
   return (
@@ -70,7 +67,7 @@ export default async function Layout({ children }: Props) {
       )}
     >
       <body>
-        <AuthProvider session={session}>
+        <AuthProvider>
           <NotificationProvider>
             <ThemeProvider initialTheme={initialTheme}>
               <ToastProvider>

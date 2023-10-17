@@ -8,6 +8,9 @@
   "orientation": "portrait",
   "scope": "/",
   "start_url": "/",
+  "id": "minhau",
+  "dir": "ltr",
+  "lang": "pt",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",

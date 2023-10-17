@@ -36,7 +36,7 @@ const nextConfig = {
 const pwaConfig = {
   customWorkerSrc: 'src/serviceWorker',
   dest: 'public',
-  sw: 'service-worker.js',
+  sw: 'sw.js',
   workboxOptions: {
     disableDevLogs: true,
   },

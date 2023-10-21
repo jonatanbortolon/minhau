@@ -1,8 +1,11 @@
 'use client'
 
 import { CarouselComponent } from '@/components/carousel'
+import { ApiResponse } from '@/types/apiResponse'
+import { getApiUrl } from '@/utils/getApiUrl'
 import { metersToKilometers } from '@/utils/metersToKilometers'
-import { PetType, PetSex } from '@prisma/client'
+import { nameToInitials } from '@/utils/nameToInitials'
+import { PetSex, PetType } from '@prisma/client'
 import {
   CatIcon,
   DogIcon,
@@ -10,20 +13,17 @@ import {
   MessageCircleIcon,
   ShareIcon,
 } from 'lucide-react'
+import { useSession } from 'next-auth/react'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import { GoogleIconComponent } from '../googleIcon'
+import { PullToRefreshComponent } from '../pullToRefresh'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
-import { InitializeChatFormComponent } from './initializeChatForm'
-import Link from 'next/link'
-import { useState } from 'react'
-import { getApiUrl } from '@/utils/getApiUrl'
-import { GoogleIconComponent } from '../googleIcon'
-import { useRouter } from 'next/navigation'
-import { PullToRefreshComponent } from '../pullToRefresh'
-import { ApiResponse } from '@/types/apiResponse'
 import { useToast } from '../ui/use-toast'
-import { nameToInitials } from '@/utils/nameToInitials'
-import { Avatar, AvatarImage, AvatarFallback } from '../ui/avatar'
-import { useSession } from 'next-auth/react'
+import { InitializeChatFormComponent } from './initializeChatForm'
 
 type Props = {
   pet: {
@@ -183,7 +183,7 @@ export function PetDetailComponent({ pet }: Props) {
         </div>
         <div className="w-full flex flex-col items-start gap-3 mt-6">
           <span className="font-bold text-sm">Publicado por</span>
-          <div className="h-full flex items-center justify-center space-x-1">
+          <div className="h-full flex items-center justify-center space-x-4">
             <Avatar>
               <AvatarImage src={pet.owner.image} alt={pet.owner.name} />
               <AvatarFallback className="bg-primary text-primary-foreground">

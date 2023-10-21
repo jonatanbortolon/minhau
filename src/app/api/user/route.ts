@@ -1,11 +1,11 @@
+import { authOptions } from '@/authOptions'
 import { userModel } from '@/models/user'
 import { signupSchema } from '@/schemas/signup'
-import { NextResponse } from 'next/server'
+import { updateProfileSchema } from '@/schemas/updateProfile'
+import { del, put } from '@vercel/blob'
 import bcrypt from 'bcrypt'
 import { getServerSession } from 'next-auth'
-import { authOptions } from '@/authOptions'
-import { updateProfileSchema } from '@/schemas/updateProfile'
-import { put, del } from '@vercel/blob'
+import { NextResponse } from 'next/server'
 
 export const dynamic = 'force-dynamic'
 
@@ -136,7 +136,7 @@ export async function PUT(request: Request) {
     let imageUrl: string | null = null
 
     if (data.image) {
-      await del(`user/${user.id}.jpg`)
+      if (user.image) await del(`user/${user.id}.jpg`)
 
       const imageResponse = await put(`user/${user.id}.jpg`, data.image, {
         access: 'public',

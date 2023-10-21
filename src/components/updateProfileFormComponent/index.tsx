@@ -1,6 +1,20 @@
 'use client'
 
+import { cn } from '@/libs/utils'
+import { updateProfileSchema } from '@/schemas/updateProfile'
+import { ApiResponse } from '@/types/apiResponse'
+import { blobToBase64 } from '@/utils/blobToBase64'
+import { getApiUrl } from '@/utils/getApiUrl'
+import { nameToInitials } from '@/utils/nameToInitials'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Loader2Icon } from 'lucide-react'
+import { useSession } from 'next-auth/react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { LocationInputComponent } from '../locationInput'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import { Button } from '../ui/button'
 import {
   Form,
   FormControl,
@@ -10,22 +24,8 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { Button } from '../ui/button'
-import { Loader2Icon } from 'lucide-react'
-import { useToast } from '../ui/use-toast'
-import { getApiUrl } from '@/utils/getApiUrl'
-import { LocationInputComponent } from '../locationInput'
-import { updateProfileSchema } from '@/schemas/updateProfile'
 import { Input } from '../ui/input'
-import { cn } from '@/libs/utils'
-import { blobToBase64 } from '@/utils/blobToBase64'
-import { useEffect, useState } from 'react'
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
-import { useSession } from 'next-auth/react'
-import { nameToInitials } from '@/utils/nameToInitials'
-import { ApiResponse } from '@/types/apiResponse'
+import { useToast } from '../ui/use-toast'
 
 type Props = {
   initialLocation: {
@@ -183,6 +183,11 @@ export function UpdateProfileFormComponent({ initialLocation }: Props) {
                             form.setValue(
                               'image',
                               event.target.files?.item(0) ?? null,
+                              {
+                                shouldDirty: true,
+                                shouldTouch: true,
+                                shouldValidate: true,
+                              },
                             )
                           }
                         />

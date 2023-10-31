@@ -34,7 +34,6 @@ const nextConfig = {
 }
 
 const pwaConfig = {
-  customWorkerSrc: 'src/serviceWorker',
   dest: 'public',
   sw: 'sw.js',
   workboxOptions: {
